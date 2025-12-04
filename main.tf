@@ -4,14 +4,29 @@ resource "azurerm_resource_group" "example" {
   name     = var.resource_group_name_prefix
 }
 
-resource "azurerm_storage_account" "example" {
-  name                     = var.azurerm_storage_account
-  resource_group_name      = azurerm_resource_group.example.name
-  location                 = azurerm_resource_group.example.location
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
+resource "azurerm_virtual_network" "example" {
+  name                = "homework-network"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  address_space       = ["10.0.0.0/16"]
+  dns_servers         = ["10.0.0.4", "10.0.0.5"]
+
+  subnet {
+    name             = "subnet-firewall"
+    address_prefixes = ["10.0.1.0/24"]
+  }
+
+  subnet {
+    name             = "subnet-gateway"
+    address_prefixes = ["10.0.2.0/24"]
+    }
+
+    subnet {
+    name             = "subnet-appservice"
+    address_prefixes = ["10.0.3.0/24"]
+      }
 
   tags = {
-    environment = "andrew"
+    environment = "homework"
   }
 }
