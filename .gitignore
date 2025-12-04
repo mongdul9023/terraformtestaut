@@ -1,0 +1,22 @@
+# Terraform generated files
+.terraform/
+.terraform\
+.terraform
+.terraformrc
+*.tfstate
+*.tfstate.*backup
+*.tfplan
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Provider specific files (if applicable)
+# Example for AWS provider
+.terraform/providers/registry.terraform.io/hashicorp/aws/
